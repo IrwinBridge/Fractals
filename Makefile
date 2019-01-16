@@ -1,5 +1,6 @@
 NAME = fractol
-SRC = *.c
+SRC = src/*.c
+HEADERS = -Iincludes
 LIBLINK = -L./libft -lft
 MLXLINK = -L./minilibx -lmlx_Linux -lXext -lX11
 MATHLINK = -lm
@@ -7,7 +8,7 @@ GFLAGS = -Wall -Wextra -Werror
 
 $(NAME):
 	make -C libft
-	gcc $(GFLAGS) $(SRC) $(LIBLINK) $(MLXLINK) $(MATHLINK) -o $(NAME)
+	gcc $(GFLAGS) $(SRC) $(HEADERS) $(LIBLINK) $(MLXLINK) $(MATHLINK) -o $(NAME)
 
 all: $(NAME)
 

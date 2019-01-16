@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_handlers.c                                   :+:      :+:    :+:   */
+/*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/16 18:11:36 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/16 21:12:31 by jeffersoncity    ###   ########.fr       */
+/*   Created: 2019/01/16 23:22:49 by jefferso          #+#    #+#             */
+/*   Updated: 2019/01/17 00:03:33 by jeffersoncity    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../includes/fractol.h"
 
-void	usage_exit(char *msg)
+void	zoom_camera(t_engine *engine)
 {
-	ft_putendl(msg);
-	exit(EXIT_FAILURE);
-}
-
-void	error_exit(char *msg)
-{
-	ft_putendl(msg);
-	exit(EXIT_FAILURE);
-}
-
-void	success_exit(t_engine *engine)
-{
-	free_engine(engine);
-	exit(EXIT_SUCCESS);
+	engine->camera->fractal_size *= engine->camera->scale_factor;
+	render(engine);
 }

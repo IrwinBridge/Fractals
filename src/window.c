@@ -6,11 +6,11 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 18:38:26 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/16 21:49:08 by jeffersoncity    ###   ########.fr       */
+/*   Updated: 2019/01/17 00:04:00 by jeffersoncity    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../includes/fractol.h"
 
 t_engine	*free_engine(t_engine *engine)
 {

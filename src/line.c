@@ -6,11 +6,11 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 22:20:06 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/16 23:15:57 by jeffersoncity    ###   ########.fr       */
+/*   Updated: 2019/01/17 00:03:50 by jeffersoncity    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../includes/fractol.h"
 
 void	rasterize(t_engine *engine, t_line *line, t_point *p1, t_point *p2)
 {

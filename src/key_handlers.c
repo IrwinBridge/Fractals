@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   transformations.c                                  :+:      :+:    :+:   */
+/*   key_handlers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/16 23:31:17 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/16 23:32:27 by jeffersoncity    ###   ########.fr       */
+/*   Created: 2019/01/16 21:08:23 by jefferso          #+#    #+#             */
+/*   Updated: 2019/01/17 00:03:48 by jeffersoncity    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../includes/fractol.h"
 
-void	transform(t_engine *engine, t_point *p1, t_point *p2)
+int		key_release(int keycode, t_engine *engine)
 {
-	p1->x *= engine->camera->scale;
-	p1->y *= engine->camera->scale;
-	p2->x *= engine->camera->scale;
-	p2->y *= engine->camera->scale;
+	if (keycode == KEY_ESC)
+		success_exit(engine);
+	if (keycode == KEY_PLUS)
+	{
+		engine->camera->fractal_size *= engine->camera->scale_factor;
+		render(engine);
+	}
+	if (keycode == KEY_MINUS)
+	{
+		engine->camera->fractal_size /= engine->camera->scale_factor;
+		render(engine);
+	}
+	return (0);
 }

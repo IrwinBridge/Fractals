@@ -6,11 +6,11 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 19:55:47 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/16 23:23:24 by jeffersoncity    ###   ########.fr       */
+/*   Updated: 2019/01/17 00:03:45 by jeffersoncity    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../includes/fractol.h"
 
 t_image		*delete_image(t_engine *engine, t_image *image)
 {

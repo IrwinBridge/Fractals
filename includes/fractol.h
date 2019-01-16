@@ -6,7 +6,7 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 18:04:49 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/16 23:32:38 by jeffersoncity    ###   ########.fr       */
+/*   Updated: 2019/01/17 00:06:07 by jeffersoncity    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include <X11/X.h>
 # include <stdio.h>
 # include <math.h>
-# include "minilibx/mlx.h"
-# include "libft/libft.h"
+# include "../minilibx/mlx.h"
+# include "../libft/libft.h"
 # include "mlx_hooks.h"
 # include "keymap.h"
 
@@ -69,7 +69,8 @@ typedef struct	s_camera
 {
 	int			x_offset;
 	int			y_offset;
-	float		scale;
+	int			fractal_size;
+	float		scale_factor;
 }				t_camera;
 
 typedef struct	s_engine
