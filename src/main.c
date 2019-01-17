@@ -6,7 +6,7 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 18:07:53 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/17 00:03:52 by jeffersoncity    ###   ########.fr       */
+/*   Updated: 2019/01/17 22:10:58 by jeffersoncity    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ void	setting(t_engine *engine)
 {
 	engine->camera->x_offset = 0.0f;
 	engine->camera->y_offset = 0.0f;
-	engine->camera->fractal_size = 100;
-	engine->camera->scale_factor = 1.1f;
+	engine->camera->zoom = 1.0f;
+	engine->camera->scale_factor = 2.0f;
+	engine->camera->hue = 0.0f;
 }
 
 /*
@@ -35,6 +36,9 @@ int		main(int argc, char **argv)
 	setting(engine);
 	render(engine);
 	mlx_hook(engine->window, E_KEY_RELEASE, KeyReleaseMask, key_release, engine);
+	mlx_hook(engine->window, 4, ButtonPressMask, hook_mousedown, engine);
+	mlx_hook(engine->window, 5, ButtonReleaseMask, hook_mouseup, engine);
+	mlx_hook(engine->window, 6, PointerMotionMask, hook_mousemove, engine);
 	//mlx_loop_hook(engine->mlx, render, engine);
 	mlx_loop(engine->mlx);
 	(void)argv;

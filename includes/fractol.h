@@ -6,7 +6,7 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 18:04:49 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/17 00:06:07 by jeffersoncity    ###   ########.fr       */
+/*   Updated: 2019/01/17 22:55:50 by jeffersoncity    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,12 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# define WINDOW_WIDTH	1280
-# define WINDOW_HEIGHT	720
+# define WINDOW_WIDTH	640
+# define WINDOW_HEIGHT	420
+
+# define MAX_ITERATIONS	512
+
+# define ZOOM			1.1f
 
 # include <X11/X.h>
 # include <stdio.h>
@@ -28,10 +32,24 @@
 # include "mlx_hooks.h"
 # include "keymap.h"
 
+typedef struct	s_rgb
+{
+	int			r;
+	int			g;
+	int			b;
+}				t_rgb;
+
+typedef struct	s_hsv
+{
+	double		h;
+	double		s;
+	double		v;
+}				t_hsv;
+
 typedef struct	s_point
 {
-	float		x;
-	float		y;
+	double		x;
+	double		y;
 	int			color;
 }				t_point;
 
@@ -67,10 +85,11 @@ typedef struct	s_mouse
 
 typedef struct	s_camera
 {
-	int			x_offset;
-	int			y_offset;
-	int			fractal_size;
+	float		x_offset;
+	float		y_offset;
+	float		zoom;
 	float		scale_factor;
+	float		hue;
 }				t_camera;
 
 typedef struct	s_engine
@@ -91,12 +110,17 @@ void			clear_image(t_image *image, int color);
 void			set_image_pixel(t_image *image, int x, int y, int color);
 
 int				key_release(int keycode, t_engine *engine);
-void			zoom_camera(t_engine *engine);
+int				hook_mousedown(int button, int x, int y, t_engine *engine);
+int				hook_mouseup(int button, int x, int y, t_engine *engine);
+int				hook_mousemove(int x, int y, t_engine *engine);
+void			zoom_camera(t_engine *engine, float coefficient, int x, int y);
 
 int				render(t_engine *engine);
-void			transform(t_engine *engine, t_point *p1, t_point *p2);
-
 void			draw_line(t_engine *engine, t_point p1, t_point p2);
+
+void			julia_fractal(t_engine *engine);
+int				set_fractal_color(t_rgb rgb);
+t_rgb			hsv2rgb(t_hsv *hsv);
 
 void			usage_exit(char *msg);
 void			error_exit(char *msg);
