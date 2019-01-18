@@ -6,7 +6,7 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 17:35:13 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/18 18:29:23 by jeffersoncity    ###   ########.fr       */
+/*   Updated: 2019/01/18 22:35:29 by jeffersoncity    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_hsv	*get_julia_color(t_engine *engine, int i)
 	return (hsv);
 }
 
-int		julia_calculate(t_engine *engine, t_point *new, t_point *old, t_point c)
+int		julia_pixel(t_engine *engine, t_point *new, t_point *old, t_point c)
 {
 	int i;
 
@@ -62,7 +62,7 @@ void	julia_fractal(t_engine *engine)
 		while (x < WINDOW_WIDTH)
 		{
 			transform(engine, &new, x, y);
-			i = julia_calculate(engine, &new, &old, engine->fractal->c);
+			i = julia_pixel(engine, &new, &old, engine->fractal->c);
 			set_image_pixel(engine->image, x, y,
 					set_fractal_color(hsv2rgb(get_julia_color(engine, i))));
 			x++;

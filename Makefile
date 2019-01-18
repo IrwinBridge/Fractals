@@ -8,7 +8,7 @@ GFLAGS = -Wall -Wextra -Werror
 
 $(NAME):
 	make -C libft
-	gcc $(GFLAGS) $(SRC) $(HEADERS) $(LIBLINK) $(MLXLINK) $(MATHLINK) -o $(NAME)
+	gcc $(GFLAGS) $(SRC) $(HEADERS) $(LIBLINK) $(MLXLINK) $(MATHLINK) -Ofast -o $(NAME)
 
 all: $(NAME)
 

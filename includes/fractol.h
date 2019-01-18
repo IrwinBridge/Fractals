@@ -6,7 +6,7 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 18:04:49 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/18 17:57:55 by jeffersoncity    ###   ########.fr       */
+/*   Updated: 2019/01/18 22:17:56 by jeffersoncity    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,23 @@ typedef struct	s_mouse
 
 typedef struct	s_camera
 {
-	float		x_offset;
-	float		y_offset;
-	float		zoom;
-	float		scale_factor;
-	float		hue;
+	double		x_offset;
+	double		y_offset;
+	double		zoom;
+	double		scale_factor;
+	double		hue;
 }				t_camera;
+
+typedef struct	s_viewport
+{
+	double		xmin;
+	double		xmax;
+	double		ymin;
+	double		ymax;
+	double		zoom;
+	double		x_offset;
+	double		y_offset;
+}				t_viewport;
 
 typedef struct	s_engine
 {

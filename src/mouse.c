@@ -6,7 +6,7 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 18:00:13 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/18 19:08:32 by jeffersoncity    ###   ########.fr       */
+/*   Updated: 2019/01/18 22:53:38 by jeffersoncity    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ int		hook_mousemove(int x, int y, t_engine *engine)
 	else
 	{
 		// TODO: change for if no button is down
-		//engine->fractal->c.x = (WINDOW_WIDTH - engine->mouse->x) / WINDOW_WIDTH * 2;
+		engine->fractal->c.x = (double)x / (double)WINDOW_WIDTH * 4.0f - 2.0f;
+		engine->fractal->c.y = (double)y / (double)WINDOW_HEIGHT * 4.0f - 2.0f;
+		//render(engine);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 21:08:23 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/18 18:21:05 by jeffersoncity    ###   ########.fr       */
+/*   Updated: 2019/01/18 21:44:50 by jeffersoncity    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ int		camera_comtrol(int keycode, t_engine *engine)
 	else if (keycode == KEY_MINUS)
 		engine->camera->zoom /= engine->camera->scale_factor;
 	else if (keycode == KEY_UP)
-		engine->camera->y_offset += 10;
+		engine->camera->y_offset -= 20;
 	else if (keycode == KEY_DOWN)
-		engine->camera->y_offset -= 10;
+		engine->camera->y_offset += 20;
 	else if (keycode == KEY_RIGHT)
-		engine->camera->x_offset -= 10;
+		engine->camera->x_offset += 20;
 	else if (keycode == KEY_LEFT)
-		engine->camera->x_offset += 10;
+		engine->camera->x_offset -= 20;
 	else if (keycode == KEY_B_O)
 		engine->camera->hue -= 2.0f;
 	else if (keycode == KEY_B_C)
