@@ -6,11 +6,11 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 19:55:47 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/17 00:03:45 by jeffersoncity    ###   ########.fr       */
+/*   Updated: 2019/01/18 18:37:52 by jeffersoncity    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
+#include "fractol.h"
 
 t_image		*delete_image(t_engine *engine, t_image *image)
 {
@@ -34,7 +34,7 @@ t_image		*create_image(t_engine *engine)
 		return (delete_image(engine, image));
 	image->info = mlx_get_data_addr(image->image, &image->bpp,
 									&image->stride, &image->endian);
-	image->bpp /= 8; // Test without it
+	image->bpp /= 8;
 	return (image);
 }
 
@@ -54,6 +54,5 @@ void		set_image_pixel(t_image *image, int x, int y, int color)
 {
 	if (x < 0 || x >= WINDOW_WIDTH || y < 0 || y >= WINDOW_HEIGHT)
 		return ;
-	// Test without (int *)
 	*(int *)(image->info + ((x + y * WINDOW_WIDTH) * image->bpp)) = color;
 }

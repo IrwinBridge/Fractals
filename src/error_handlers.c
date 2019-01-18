@@ -6,11 +6,11 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 18:11:36 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/17 00:03:40 by jeffersoncity    ###   ########.fr       */
+/*   Updated: 2019/01/18 17:37:01 by jeffersoncity    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
+#include "fractol.h"
 
 void	usage_exit(char *msg)
 {

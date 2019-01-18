@@ -6,7 +6,7 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 18:04:49 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/17 22:55:50 by jeffersoncity    ###   ########.fr       */
+/*   Updated: 2019/01/18 17:57:55 by jeffersoncity    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,9 @@
 # define FRACTOL_H
 
 # define WINDOW_WIDTH	640
-# define WINDOW_HEIGHT	420
-
-# define MAX_ITERATIONS	512
-
-# define ZOOM			1.1f
+# define WINDOW_HEIGHT	480
 
 # include <X11/X.h>
-# include <stdio.h>
 # include <math.h>
 # include "../minilibx/mlx.h"
 # include "../libft/libft.h"
@@ -65,6 +60,12 @@ typedef struct	s_line
 	int			err2;
 }				t_line;
 
+typedef struct	s_fractal
+{
+	t_point		c;
+	int			max_iterations;
+}				t_fractal;
+
 typedef struct	s_image
 {
 	void		*image;
@@ -99,6 +100,7 @@ typedef struct	s_engine
 	t_image		*image;
 	t_mouse		*mouse;
 	t_camera	*camera;
+	t_fractal	*fractal;
 }				t_engine;
 
 t_engine		*initialize(char *title);
@@ -113,12 +115,14 @@ int				key_release(int keycode, t_engine *engine);
 int				hook_mousedown(int button, int x, int y, t_engine *engine);
 int				hook_mouseup(int button, int x, int y, t_engine *engine);
 int				hook_mousemove(int x, int y, t_engine *engine);
-void			zoom_camera(t_engine *engine, float coefficient, int x, int y);
 
 int				render(t_engine *engine);
-void			draw_line(t_engine *engine, t_point p1, t_point p2);
+
+void			zoom_camera(t_engine *engine, float coefficient, int x, int y);
+void			transform(t_engine *engine, t_point *new, int x, int y);
 
 void			julia_fractal(t_engine *engine);
+
 int				set_fractal_color(t_rgb rgb);
 t_rgb			hsv2rgb(t_hsv *hsv);
 

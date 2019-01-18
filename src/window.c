@@ -6,11 +6,23 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 18:38:26 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/17 00:04:00 by jeffersoncity    ###   ########.fr       */
+/*   Updated: 2019/01/18 18:00:20 by jeffersoncity    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
+#include "fractol.h"
+
+void	setting(t_engine *engine)
+{
+	engine->camera->x_offset = 0.0f;
+	engine->camera->y_offset = 0.0f;
+	engine->camera->zoom = 1.0f;
+	engine->camera->scale_factor = 1.05f;
+	engine->camera->hue = 0.0f;
+	engine->fractal->c.x = -0.7f;
+	engine->fractal->c.y = 0.27015f;
+	engine->fractal->max_iterations = 100;
+}
 
 t_engine	*free_engine(t_engine *engine)
 {
@@ -20,6 +32,8 @@ t_engine	*free_engine(t_engine *engine)
 		delete_image(engine, engine->image);
 	if (engine->mouse)
 		ft_memdel((void **)&engine->mouse);
+	if (engine->fractal)
+		ft_memdel((void **)&engine->fractal);
 	if (engine->camera)
 		ft_memdel((void **)&engine->camera);
 	ft_memdel((void **)&engine->mlx);
@@ -40,7 +54,9 @@ t_engine	*initialize(char *title)
 										  title))		||
 		!(engine->image = create_image(engine))			||
 		!(engine->mouse = ft_memalloc(sizeof(t_mouse))) ||
+		!(engine->fractal = ft_memalloc(sizeof(t_fractal))) ||
 		!(engine->camera = ft_memalloc(sizeof(t_camera))))
 		return (free_engine(engine));
+	setting(engine);
 	return (engine);
 }

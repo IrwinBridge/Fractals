@@ -6,7 +6,7 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 18:16:01 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/17 22:42:28 by jeffersoncity    ###   ########.fr       */
+/*   Updated: 2019/01/18 18:36:21 by jeffersoncity    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_rgb	hsv2rgb(t_hsv *hsv)
 	double	g;
 	double	b;
 	int		i;
+	t_rgb	rgb;
 
 	r = 0;
 	g = 0;
@@ -87,7 +88,6 @@ t_rgb	hsv2rgb(t_hsv *hsv)
 		}
 	}
 
-	t_rgb rgb;
 	rgb.r = r * 255;
 	rgb.g = g * 255;
 	rgb.b = b * 255;
