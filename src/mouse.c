@@ -6,7 +6,7 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 18:00:13 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/18 22:53:38 by jeffersoncity    ###   ########.fr       */
+/*   Updated: 2019/01/18 23:28:15 by jeffersoncity    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,10 @@ int		hook_mousedown(int button, int x, int y, t_engine *engine)
 	if (button == 4)
 	{
 		zoom_camera(engine, engine->camera->scale_factor, x, y);
-		render(engine);
 	}
 	else if (button == 5)
 	{
 		zoom_camera(engine, 1 / engine->camera->scale_factor, x, y);
-		render(engine);
 	}
 	if (y < 0)
 		return (0);
@@ -52,9 +50,8 @@ int		hook_mousemove(int x, int y, t_engine *engine)
 	}
 	else
 	{
-		// TODO: change for if no button is down
-		engine->fractal->c.x = (double)x / (double)WINDOW_WIDTH * 4.0f - 2.0f;
-		engine->fractal->c.y = (double)y / (double)WINDOW_HEIGHT * 4.0f - 2.0f;
+		//engine->fractal->c.x = (double)x / (double)WINDOW_WIDTH * 4.0f - 2.0f;
+		//engine->fractal->c.y = (double)y / (double)WINDOW_HEIGHT * 4.0f - 2.0f;
 		//render(engine);
 	}
 	return (0);
