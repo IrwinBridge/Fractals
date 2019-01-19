@@ -6,7 +6,7 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 17:35:13 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/19 13:36:20 by jeffersoncity    ###   ########.fr       */
+/*   Updated: 2019/01/19 17:21:14 by jeffersoncity    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,47 +28,28 @@ t_hsv	*get_julia_color(t_engine *engine, int i)
 	return (hsv);
 }
 
-int		julia_pixel(t_engine *engine, t_point *new, t_point *old, t_point c)
-{
-	int i;
-
-	i = 0;
-	while (i < engine->fractal->max_iterations)
-	{
-		old->x = new->x;
-		old->y = new->y;
-
-		new->x = old->x * old->x - old->y * old->y + c.x;
-		new->y = 2 * old->x * old->y + c.y;
-		if ((new->x * new->x + new->y * new->y) > 4)
-			break ;
-		i++;
-	}
-	return (i);
-}
-
-void	julia_fractal(t_engine *engine)
+void	julia_pixel(t_engine *engine, int x, int y)
 {
 	t_point	old;
 	t_point	new;
-	int		i;
-	int		x;
-	int		y;
+	int i;
 
-	y = 0;
-	while (y < WINDOW_HEIGHT)
+	i = 0;
+	transform(engine->camera, &new, x, y);
+	while (i < engine->fractal->max_iterations)
 	{
-		x = 0;
-		while (x < WINDOW_WIDTH)
-		{
-			transform(engine->camera, &new, x, y);
-			i = julia_pixel(engine, &new, &old, engine->fractal->c);
-			set_image_pixel(engine->image, x, y,
-					set_fractal_color(hsv2rgb(get_julia_color(engine, i))));
-			x++;
-		}
-		y++;
+		old.x = new.x;
+		old.y = new.y;
+
+		new.x = old.x * old.x - old.y * old.y + engine->fractal->c.x;
+		new.y = 2 * old.x * old.y + engine->fractal->c.y;
+		if ((new.x * new.x + new.y * new.y) > 4)
+			break ;
+		i++;
 	}
+	// TODO: move to main thread and write this data to other buffer
+	set_image_pixel(engine->image, x, y,
+			set_fractal_color(hsv2rgb(get_julia_color(engine, i))));
 }
 
 void	julia_camera(t_engine *engine)

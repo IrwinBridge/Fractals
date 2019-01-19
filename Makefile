@@ -4,11 +4,12 @@ HEADERS = -Iincludes
 LIBLINK = -L./libft -lft
 MLXLINK = -L./minilibx -lmlx_Linux -lXext -lX11
 MATHLINK = -lm
+PTHREADS = -lpthread
 GFLAGS = -Wall -Wextra -Werror
 
 $(NAME):
 	make -C libft
-	gcc $(GFLAGS) $(SRC) $(HEADERS) $(LIBLINK) $(MLXLINK) $(MATHLINK) -Ofast -o $(NAME)
+	gcc $(GFLAGS) $(SRC) $(HEADERS) $(LIBLINK) $(MLXLINK) $(MATHLINK) $(PTHREADS) -Ofast -o $(NAME)
 
 all: $(NAME)
 

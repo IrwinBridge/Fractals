@@ -6,7 +6,7 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 18:04:49 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/19 14:04:48 by jeffersoncity    ###   ########.fr       */
+/*   Updated: 2019/01/19 18:15:41 by jeffersoncity    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,14 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# define WINDOW_WIDTH	640
-# define WINDOW_HEIGHT	480
+# define WINDOW_WIDTH	1280
+# define WINDOW_HEIGHT	720
+
+# define THREADS		2
 
 # include <X11/X.h>
 # include <math.h>
+# include <pthread.h>
 # include "../minilibx/mlx.h"
 # include "../libft/libft.h"
 # include "mlx_hooks.h"
@@ -40,6 +43,12 @@ typedef struct	s_hsv
 	double		s;
 	double		v;
 }				t_hsv;
+
+typedef struct	s_pixel
+{
+	int			x;
+	int			y;
+}				t_pixel;
 
 typedef struct	s_point
 {
@@ -98,6 +107,12 @@ typedef struct	s_camera
 	double		hue;
 }				t_camera;
 
+typedef struct	s_thread
+{
+	int			id;
+	void		*engine;
+}				t_thread;
+
 typedef struct	s_engine
 {
 	void		*mlx;
@@ -106,6 +121,7 @@ typedef struct	s_engine
 	t_mouse		*mouse;
 	t_camera	*camera;
 	t_fractal	*fractal;
+	t_thread	threads[THREADS];
 }				t_engine;
 
 t_engine		*initialize(char *title);
@@ -126,7 +142,7 @@ int				render(t_engine *engine);
 void			zoom(t_camera *cam, float coeff, int x, int y);
 void			transform(t_camera *cam, t_point *new, int x, int y);
 
-void			julia_fractal(t_engine *engine);
+void			julia_pixel(t_engine *engine, int x, int y);
 void			julia_camera(t_engine *engine);
 
 int				set_fractal_color(t_rgb rgb);
