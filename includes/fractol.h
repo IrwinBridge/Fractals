@@ -6,7 +6,7 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 18:04:49 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/19 18:15:41 by jeffersoncity    ###   ########.fr       */
+/*   Updated: 2019/01/20 00:21:55 by cmelara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# define WINDOW_WIDTH	1280
-# define WINDOW_HEIGHT	720
+# define WINDOW_WIDTH	800
+# define WINDOW_HEIGHT	800
 
-# define THREADS		2
+# define THREADS		4
 
 # include <X11/X.h>
 # include <math.h>
+# include <CL/opencl.h>
 # include <pthread.h>
 # include "../minilibx/mlx.h"
 # include "../libft/libft.h"

@@ -6,7 +6,7 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 21:24:04 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/19 18:13:25 by jeffersoncity    ###   ########.fr       */
+/*   Updated: 2019/01/20 00:31:43 by cmelara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 /*
 ************************* RENDERING PART OF THE SCREEN ************************
 */
+#include <time.h>
+#include <stdio.h>
 
 void	*render_thread(void *thread)
 {
@@ -35,8 +37,17 @@ void	*render_thread(void *thread)
 	pthread_exit(0);
 }
 
+/*
+**	TODO: Too much time to create and join threads
+**	Reusing would help
+*/
+
 int		render(t_engine *engine)
 {
+	// clock_t start, end;
+    // double cpu_time_used;
+	// start = clock();
+
 	int			i;
 	pthread_t 	tid[THREADS];
 
@@ -56,5 +67,8 @@ int		render(t_engine *engine)
 	}
 	mlx_put_image_to_window(engine->mlx, engine->window,
 							engine->image->image, 0, 0);
+	// end = clock();
+	// cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+	// printf("%f\n", cpu_time_used);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 17:35:13 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/19 17:21:14 by jeffersoncity    ###   ########.fr       */
+/*   Updated: 2019/01/19 18:17:29 by jeffersoncity    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	julia_pixel(t_engine *engine, int x, int y)
 			break ;
 		i++;
 	}
-	// TODO: move to main thread and write this data to other buffer
 	set_image_pixel(engine->image, x, y,
 			set_fractal_color(hsv2rgb(get_julia_color(engine, i))));
 }
