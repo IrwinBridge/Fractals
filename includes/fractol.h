@@ -6,7 +6,7 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 18:04:49 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/18 22:17:56 by jeffersoncity    ###   ########.fr       */
+/*   Updated: 2019/01/19 14:04:48 by jeffersoncity    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct	s_line
 typedef struct	s_fractal
 {
 	t_point		c;
+	int			deform;
 	int			max_iterations;
 }				t_fractal;
 
@@ -86,23 +87,16 @@ typedef struct	s_mouse
 
 typedef struct	s_camera
 {
+	double		xmin;
+	double		xmax;
+	double		ymin;
+	double		ymax;
 	double		x_offset;
 	double		y_offset;
 	double		zoom;
 	double		scale_factor;
 	double		hue;
 }				t_camera;
-
-typedef struct	s_viewport
-{
-	double		xmin;
-	double		xmax;
-	double		ymin;
-	double		ymax;
-	double		zoom;
-	double		x_offset;
-	double		y_offset;
-}				t_viewport;
 
 typedef struct	s_engine
 {
@@ -129,10 +123,11 @@ int				hook_mousemove(int x, int y, t_engine *engine);
 
 int				render(t_engine *engine);
 
-void			zoom_camera(t_engine *engine, float coefficient, int x, int y);
-void			transform(t_engine *engine, t_point *new, int x, int y);
+void			zoom(t_camera *cam, float coeff, int x, int y);
+void			transform(t_camera *cam, t_point *new, int x, int y);
 
 void			julia_fractal(t_engine *engine);
+void			julia_camera(t_engine *engine);
 
 int				set_fractal_color(t_rgb rgb);
 t_rgb			hsv2rgb(t_hsv *hsv);

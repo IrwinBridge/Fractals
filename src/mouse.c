@@ -6,7 +6,7 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 18:00:13 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/18 23:28:15 by jeffersoncity    ###   ########.fr       */
+/*   Updated: 2019/01/19 14:12:43 by jeffersoncity    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,19 @@ int		hook_mousedown(int button, int x, int y, t_engine *engine)
 {
 	if (button == 4)
 	{
-		zoom_camera(engine, engine->camera->scale_factor, x, y);
+		zoom(engine->camera, 1 / engine->camera->scale_factor, x, y);
+		render(engine);
 	}
 	else if (button == 5)
 	{
-		zoom_camera(engine, 1 / engine->camera->scale_factor, x, y);
+		zoom(engine->camera, engine->camera->scale_factor, x, y);
+		render(engine);
 	}
 	if (y < 0)
 		return (0);
 	engine->mouse->isdown |= 1 << button;
+	if (engine->mouse->isdown & (1 << 1))
+		engine->fractal->deform = !engine->fractal->deform ? 1 : 0;
 	return (0);
 }
 
@@ -50,9 +54,18 @@ int		hook_mousemove(int x, int y, t_engine *engine)
 	}
 	else
 	{
-		//engine->fractal->c.x = (double)x / (double)WINDOW_WIDTH * 4.0f - 2.0f;
-		//engine->fractal->c.y = (double)y / (double)WINDOW_HEIGHT * 4.0f - 2.0f;
-		//render(engine);
+		if (engine->fractal->deform)
+		{
+			engine->fractal->c.x = (double)x
+								/ (double)WINDOW_WIDTH
+								* (engine->camera->xmax - engine->camera->xmin)
+								+ engine->camera->xmin;
+			engine->fractal->c.y = (double)y
+								/ (double)WINDOW_HEIGHT
+								* (engine->camera->xmax - engine->camera->xmin)
+								+ engine->camera->ymin;
+			render(engine);
+		}
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 18:38:26 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/18 18:00:20 by jeffersoncity    ###   ########.fr       */
+/*   Updated: 2019/01/19 14:05:05 by jeffersoncity    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ void	setting(t_engine *engine)
 	engine->camera->hue = 0.0f;
 	engine->fractal->c.x = -0.7f;
 	engine->fractal->c.y = 0.27015f;
+	engine->fractal->deform = 0;
 	engine->fractal->max_iterations = 100;
+	julia_camera(engine);
 }
 
 t_engine	*free_engine(t_engine *engine)

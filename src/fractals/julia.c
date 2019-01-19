@@ -6,7 +6,7 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 17:35:13 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/18 22:35:29 by jeffersoncity    ###   ########.fr       */
+/*   Updated: 2019/01/19 13:36:20 by jeffersoncity    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	julia_fractal(t_engine *engine)
 		x = 0;
 		while (x < WINDOW_WIDTH)
 		{
-			transform(engine, &new, x, y);
+			transform(engine->camera, &new, x, y);
 			i = julia_pixel(engine, &new, &old, engine->fractal->c);
 			set_image_pixel(engine->image, x, y,
 					set_fractal_color(hsv2rgb(get_julia_color(engine, i))));
@@ -69,4 +69,12 @@ void	julia_fractal(t_engine *engine)
 		}
 		y++;
 	}
+}
+
+void	julia_camera(t_engine *engine)
+{
+	engine->camera->xmin = -2.0f;
+	engine->camera->xmax = 2.0f;
+	engine->camera->ymin = -2.0f;
+	engine->camera->ymax = 2.0f;
 }
