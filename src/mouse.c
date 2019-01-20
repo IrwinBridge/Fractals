@@ -6,7 +6,7 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 18:00:13 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/19 14:12:43 by jeffersoncity    ###   ########.fr       */
+/*   Updated: 2019/01/20 14:30:01 by cmelara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,11 @@ int		hook_mousemove(int x, int y, t_engine *engine)
 	{
 		if (engine->fractal->deform)
 		{
-			engine->fractal->c.x = (double)x
+			engine->fractal->c.r = (double)x
 								/ (double)WINDOW_WIDTH
 								* (engine->camera->xmax - engine->camera->xmin)
 								+ engine->camera->xmin;
-			engine->fractal->c.y = (double)y
+			engine->fractal->c.i = (double)y
 								/ (double)WINDOW_HEIGHT
 								* (engine->camera->xmax - engine->camera->xmin)
 								+ engine->camera->ymin;

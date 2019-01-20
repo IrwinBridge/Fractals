@@ -6,7 +6,7 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 23:22:49 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/20 00:28:35 by cmelara-         ###   ########.fr       */
+/*   Updated: 2019/01/20 14:12:07 by cmelara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ void	zoom(t_camera *cam, float coeff, int x, int y)
 	cam->y_offset -= ((double)y / WINDOW_HEIGHT) * (nh - h);
 }
 
-void	transform(t_camera *cam, t_point *new, int x, int y)
+void	transform(t_camera *cam, t_compl *new, int x, int y)
 {
-	new->x = ((double)x / WINDOW_WIDTH)
+	new->r = ((double)x / (double)WINDOW_WIDTH)
 			* (cam->xmax - cam->xmin)
 			* cam->zoom
 			+ cam->xmin
 			+ cam->x_offset;
-	new->y = ((double)y / WINDOW_HEIGHT)
+	new->i = ((double)y / (double)WINDOW_HEIGHT)
 			* (cam->ymax - cam->ymin)
 			* cam->zoom
 			+ cam->ymin

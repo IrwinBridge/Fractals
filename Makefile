@@ -1,5 +1,5 @@
 NAME = fractol
-SRC = src/*.c src/fractals/*.c
+SRC = src/*.c src/fractals/*.c src/deprecated/*.c
 HEADERS = -Iincludes
 LIBLINK = -L./libft -lft
 MLXLINK = -L./minilibx -lmlx_Linux -lXext -lX11

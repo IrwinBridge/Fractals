@@ -6,7 +6,7 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 18:04:49 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/20 00:21:55 by cmelara-         ###   ########.fr       */
+/*   Updated: 2019/01/20 16:54:59 by cmelara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# define WINDOW_WIDTH	800
-# define WINDOW_HEIGHT	800
+# define WINDOW_WIDTH	600
+# define WINDOW_HEIGHT	600
 
-# define THREADS		4
+# define THREADS		1
+
+//#define CL_USE_DEPRECATED_OPENCL_1_2_APIS
 
 # include <X11/X.h>
 # include <math.h>
@@ -30,6 +32,13 @@
 # include "../libft/libft.h"
 # include "mlx_hooks.h"
 # include "keymap.h"
+
+typedef enum	e_fname
+{
+	JULIA,
+	MANDELBROT,
+	BURNINGSHIP
+}				t_fname;
 
 typedef struct	s_rgb
 {
@@ -55,8 +64,13 @@ typedef struct	s_point
 {
 	double		x;
 	double		y;
-	int			color;
 }				t_point;
+
+typedef struct	s_compl
+{
+	double		r;
+	double		i;
+}				t_compl;
 
 typedef struct	s_line
 {
@@ -72,7 +86,8 @@ typedef struct	s_line
 
 typedef struct	s_fractal
 {
-	t_point		c;
+	t_fname		name;
+	t_compl		c;
 	int			deform;
 	int			max_iterations;
 }				t_fractal;
@@ -138,19 +153,22 @@ int				hook_mousedown(int button, int x, int y, t_engine *engine);
 int				hook_mouseup(int button, int x, int y, t_engine *engine);
 int				hook_mousemove(int x, int y, t_engine *engine);
 
+void			init_cl(t_engine *engine);
+
 int				render(t_engine *engine);
 
 void			zoom(t_camera *cam, float coeff, int x, int y);
-void			transform(t_camera *cam, t_point *new, int x, int y);
+void			transform(t_camera *cam, t_compl *new, int x, int y);
 
-void			julia_pixel(t_engine *engine, int x, int y);
+int				julia_pixel(t_engine *engine, int x, int y);
 void			julia_camera(t_engine *engine);
 
 int				set_fractal_color(t_rgb rgb);
 t_rgb			hsv2rgb(t_hsv *hsv);
 
-void			usage_exit(char *msg);
+void			usage_exit(void);
 void			error_exit(char *msg);
 void			success_exit(t_engine *engine);
+void			get_fname(t_engine *engine, char *name);
 
 #endif

@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   julia.c                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmelara- <cmelara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/20 00:13:31 by cmelara-          #+#    #+#             */
-/*   Updated: 2019/01/20 00:29:19 by cmelara-         ###   ########.fr       */
+/*   Created: 2018/11/26 16:12:33 by cmelara-          #+#    #+#             */
+/*   Updated: 2018/11/26 16:16:16 by cmelara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "libft.h"
 
-__kernel void	julia_pixel(t_engine *engine, int x, int y)
+size_t	ft_strlen(const char *s)
 {
-	
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }

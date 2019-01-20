@@ -6,7 +6,7 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 21:08:23 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/19 12:32:24 by jeffersoncity    ###   ########.fr       */
+/*   Updated: 2019/01/20 14:29:42 by cmelara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ int		fractal_control(int keycode, t_engine *engine)
 	else if (keycode == KEY_DIV)
 		engine->fractal->max_iterations /= 2;
 	else if (keycode == KEY_NUM8)
-		engine->fractal->c.y += 0.001f;
+		engine->fractal->c.i += 0.001f;
 	else if (keycode == KEY_NUM2)
-		engine->fractal->c.y -= 0.001f;
+		engine->fractal->c.i -= 0.001f;
 	else if (keycode == KEY_NUM4)
-		engine->fractal->c.x -= 0.001f;
+		engine->fractal->c.r -= 0.001f;
 	else if (keycode == KEY_NUM6)
-		engine->fractal->c.y += 0.001f;
+		engine->fractal->c.r += 0.001f;
 	else
 		return (0);
 	return (1);
@@ -71,8 +71,8 @@ int		key_release(int keycode, t_engine *engine)
 		engine->camera->zoom = 1.0f;
 		engine->camera->x_offset = 0.0f;
 		engine->camera->y_offset = 0.0f;
-		engine->fractal->c.x = -0.7f;
-		engine->fractal->c.y = 0.27015f;
+		engine->fractal->c.r = -0.7f;
+		engine->fractal->c.i = 0.27015f;
 		engine->fractal->max_iterations = 100;
 		render(engine);
 	}

@@ -6,7 +6,7 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 17:35:13 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/19 18:17:29 by jeffersoncity    ###   ########.fr       */
+/*   Updated: 2019/01/20 15:28:23 by cmelara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,26 @@ t_hsv	*get_julia_color(t_engine *engine, int i)
 	return (hsv);
 }
 
-void	julia_pixel(t_engine *engine, int x, int y)
+int		julia_pixel(t_engine *engine, int x, int y)
 {
-	t_point	old;
-	t_point	new;
+	t_compl	new;
+	t_compl old;
 	int i;
 
 	i = 0;
 	transform(engine->camera, &new, x, y);
 	while (i < engine->fractal->max_iterations)
 	{
-		old.x = new.x;
-		old.y = new.y;
+		old.r = new.r;
+		old.i = new.i;
 
-		new.x = old.x * old.x - old.y * old.y + engine->fractal->c.x;
-		new.y = 2 * old.x * old.y + engine->fractal->c.y;
-		if ((new.x * new.x + new.y * new.y) > 4)
+		new.r = old.r * old.r - old.i * old.i + engine->fractal->c.r;
+		new.i = 2.0f * old.r * old.i + engine->fractal->c.i;
+		if ((new.r * new.r + new.i * new.i) > 4.0f)
 			break ;
 		i++;
 	}
-	set_image_pixel(engine->image, x, y,
-			set_fractal_color(hsv2rgb(get_julia_color(engine, i))));
+	return (i);
 }
 
 void	julia_camera(t_engine *engine)
