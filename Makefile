@@ -1,16 +1,17 @@
 NAME = fractol
-SRC = src/*.c src/fractals/*.c src/deprecated/*.c
+SRC = src/*.c src/fractals/*.c
 HEADERS = -Iincludes
 LIBLINK = -L./libft -lft
-MLXLINK = -L./minilibx -lmlx_Linux -lXext -lX11
+MLXLINK = -L./minilibx -lmlx -framework OpenGL -framework AppKit
 MATHLINK = -lm
 PTHREADS = -lpthread
-GFLAGS = -Wall -Wextra -Werror
-OPENCL = -lOpenCL
+GFLAGS = -Wall -Wextra -Werror -Ofast
+OPENCL = -framework OpenCL
 
 $(NAME):
 	make -C libft
-	gcc $(GFLAGS) $(SRC) $(HEADERS) $(LIBLINK) $(MLXLINK) $(MATHLINK) $(OPENCL) $(PTHREADS) -Ofast -o $(NAME)
+	make -C minilibx
+	gcc $(GFLAGS) $(SRC) $(HEADERS) $(LIBLINK) $(MLXLINK) $(MATHLINK) $(PTHREADS) -o $(NAME)
 
 all: $(NAME)
 

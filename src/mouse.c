@@ -6,7 +6,7 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 18:00:13 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/20 14:30:01 by cmelara-         ###   ########.fr       */
+/*   Updated: 2019/01/21 23:45:25 by cmelara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,26 +46,17 @@ int		hook_mousemove(int x, int y, t_engine *engine)
 	engine->mouse->prev_y = engine->mouse->y;
 	engine->mouse->x = x;
 	engine->mouse->y = y;
-	if (engine->mouse->isdown & (1 << 1))
+	if (engine->fractal->deform)
 	{
-	}
-	else if (engine->mouse->isdown & (1 << 2))
-	{
-	}
-	else
-	{
-		if (engine->fractal->deform)
-		{
-			engine->fractal->c.r = (double)x
-								/ (double)WINDOW_WIDTH
-								* (engine->camera->xmax - engine->camera->xmin)
-								+ engine->camera->xmin;
-			engine->fractal->c.i = (double)y
-								/ (double)WINDOW_HEIGHT
-								* (engine->camera->xmax - engine->camera->xmin)
-								+ engine->camera->ymin;
-			render(engine);
-		}
+		engine->fractal->c.r = (double)x
+							/ (double)WINDOW_WIDTH
+							* (engine->camera->xmax - engine->camera->xmin)
+							+ engine->camera->xmin;
+		engine->fractal->c.i = (double)y
+							/ (double)WINDOW_HEIGHT
+							* (engine->camera->xmax - engine->camera->xmin)
+							+ engine->camera->ymin;
+		render(engine);
 	}
 	return (0);
 }

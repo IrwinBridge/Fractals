@@ -6,7 +6,7 @@
 /*   By: cmelara- <cmelara-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 12:58:39 by cmelara-          #+#    #+#             */
-/*   Updated: 2019/01/20 13:02:34 by cmelara-         ###   ########.fr       */
+/*   Updated: 2019/01/21 16:16:57 by cmelara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,8 @@ size_t				ft_strlen(const char *s);
 int					ft_strcmp(const char *s1, const char *s2);
 void				ft_putchar(char c);
 void				ft_putendl(char const *s);
+char				*ft_strdup(const char *s1);
+void				*ft_memcpy(void *dst, const void *src, size_t n);
+void				*ft_memmove(void *dst, const void *src, size_t len);
 
 #endif

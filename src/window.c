@@ -6,13 +6,13 @@
 /*   By: jefferso <jefferso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 18:38:26 by jefferso          #+#    #+#             */
-/*   Updated: 2019/01/20 16:55:05 by cmelara-         ###   ########.fr       */
+/*   Updated: 2019/01/21 23:00:20 by cmelara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	setting(t_engine *engine)
+void		setting(t_engine *engine)
 {
 	engine->camera->x_offset = 0.0f;
 	engine->camera->y_offset = 0.0f;
@@ -23,7 +23,12 @@ void	setting(t_engine *engine)
 	engine->fractal->c.i = 0.27015f;
 	engine->fractal->deform = 0;
 	engine->fractal->max_iterations = 100;
-	julia_camera(engine);
+	if (engine->fractal->name == JULIA)
+		julia_camera(engine);
+	else if (engine->fractal->name == MANDELBROT)
+		mandelbrot_camera(engine);
+	else if (engine->fractal->name == BURNINGSHIP)
+		mandelbrot_camera(engine);
 }
 
 t_engine	*free_engine(t_engine *engine)
@@ -49,17 +54,16 @@ t_engine	*initialize(char *title)
 
 	if (!(engine = ft_memalloc(sizeof(t_engine))))
 		return (NULL);
-	if (!(engine->mlx = mlx_init())						||
+	if (!(engine->mlx = mlx_init()) ||
 		!(engine->window = mlx_new_window(engine->mlx,
-										  WINDOW_WIDTH,
-										  WINDOW_HEIGHT,
-										  title))		||
-		!(engine->image = create_image(engine))			||
+											WINDOW_WIDTH,
+											WINDOW_HEIGHT,
+											title)) ||
+		!(engine->image = create_image(engine)) ||
 		!(engine->mouse = ft_memalloc(sizeof(t_mouse))) ||
 		!(engine->fractal = ft_memalloc(sizeof(t_fractal))) ||
 		!(engine->camera = ft_memalloc(sizeof(t_camera))))
 		return (free_engine(engine));
 	setting(engine);
-	init_cl(engine);
 	return (engine);
 }
